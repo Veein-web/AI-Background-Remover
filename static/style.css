@@ -1,0 +1,264 @@
+/* --- Professional Redesign - By Manus --- */
+
+/* 1. Google Fonts & Root Variables */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap' );
+
+:root {
+    --primary-gradient: linear-gradient(90deg, #4f46e5, #7c3aed);
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary-color: #4b5563;
+    --secondary-hover: #374151;
+    
+    --bg-light: #f8f9fa;
+    --text-light: #1f2937;
+    --container-light: #ffffff;
+    --border-light: #e5e7eb;
+
+    --bg-dark: #111827;
+    --text-dark: #d1d5db;
+    --container-dark: #1f2937;
+    --border-dark: #374151;
+
+    --border-radius: 8px;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* 2. General Body & Typography */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    margin: 0;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4 { font-weight: 700; }
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+
+/* 3. Navbar */
+.navbar {
+    background: var(--container-light);
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.nav-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+.nav-links { display: flex; align-items: center; gap: 1rem; }
+.nav-links span { color: var(--text-light); font-weight: 500; }
+
+/* 4. Buttons */
+.btn {
+    background: var(--primary-gradient);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--shadow);
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+.btn-secondary { background: var(--secondary-color); }
+.btn-secondary:hover { background: var(--secondary-hover); }
+.btn-large { font-size: 1.1rem; padding: 1rem 2rem; }
+
+/* 5. Hero Section (Homepage) */
+.hero {
+    text-align: center;
+    padding: 6rem 1.5rem;
+}
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+.hero-content p {
+    font-size: 1.25rem;
+    color: #4b5563;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+}
+
+/* 6. Main Containers & Forms */
+.container, .auth-container {
+    background-color: var(--container-light);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+    margin: 3rem auto;
+    border: 1px solid var(--border-light);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.auth-container { max-width: 450px; }
+.form-group { margin-bottom: 1.5rem; text-align: left; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+.auth-switch { margin-top: 1.5rem; }
+.auth-switch a { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+
+/* 7. File Input & Results */
+.file-input {
+    border: 2px dashed var(--border-light);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: block;
+    margin: 2rem auto;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+.file-input:hover {
+    border-color: var(--primary-color);
+    background-color: #fcfcfd;
+}
+.results { display: flex; justify-content: space-around; margin-top: 2rem; flex-wrap: wrap; gap: 2rem; }
+.image-box { border: 1px solid var(--border-light); padding: 1rem; border-radius: var(--border-radius); background-color: var(--bg-light); }
+.image-box h3 { margin-top: 0; font-size: 1.2rem; }
+.image-box img { max-width: 100%; height: auto; max-height: 300px; border-radius: var(--border-radius); }
+
+/* 8. Download & Pricing Section */
+.download-options { margin-top: 1.5rem; text-align: left; border-top: 1px solid var(--border-light); padding-top: 1.5rem; }
+.download-options ul { list-style: none; padding: 0; }
+.download-options li { margin-bottom: 0.75rem; }
+.credit-count { font-weight: 700; background: var(--primary-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.btn-download { display: flex; justify-content: space-between; align-items: center; text-decoration: none; padding: 0.75rem; background-color: var(--bg-light); border: 1px solid var(--border-light); border-radius: var(--border-radius); color: var(--text-light); font-weight: 500; transition: all 0.2s; }
+.btn-download:hover { border-color: var(--primary-color); background-color: var(--container-light); transform: translateY(-1px); }
+.btn-download .cost { color: var(--secondary-color); font-size: 0.9rem; }
+.btn-download.disabled { pointer-events: none; opacity: 0.5; }
+.buy-credits-link { font-size: 0.9rem; margin-top: 1rem; display: inline-block; color: var(--primary-color); font-weight: 500; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.pricing-card { border: 1px solid var(--border-light); padding: 2rem; border-radius: var(--border-radius); transition: transform 0.2s, box-shadow 0.2s; }
+.pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.pricing-card .price { font-size: 3rem; font-weight: 800; background: var(--primary-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin: 0.5rem 0; }
+.pricing-card.popular { border-width: 2px; border-color: var(--primary-color); position: relative; }
+.pricing-card.popular::before { content: "Most Popular"; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary-gradient); color: #fff; padding: 0.3rem 0.75rem; border-radius: var(--border-radius); font-size: 0.75rem; font-weight: 500; }
+
+/* 9. Alerts & Dark Mode */
+.alert { padding: 1rem; margin-bottom: 1.5rem; border: 1px solid transparent; border-radius: var(--border-radius); }
+.alert-danger { color: #991b1b; background-color: #fee2e2; border-color: #fca5a5; }
+.alert-success { color: #14532d; background-color: #dcfce7; border-color: #86efac; }
+
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+body.dark-mode .container, body.dark-mode .auth-container, body.dark-mode .navbar { background-color: var(--container-dark); border-color: var(--border-dark); }
+body.dark-mode .nav-links span { color: var(--text-dark); }
+body.dark-mode .hero-content p { color: #9ca3af; }
+body.dark-mode .form-group input { background-color: var(--bg-dark); border-color: var(--border-dark); color: var(--text-dark); }
+body.dark-mode .form-group input:focus { box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.5); }
+body.dark-mode .file-input { border-color: var(--border-dark); }
+body.dark-mode .file-input:hover { background-color: #1f2937; }
+body.dark-mode .image-box { border-color: var(--border-dark); background-color: var(--bg-dark); }
+body.dark-mode .download-options { border-top-color: var(--border-dark); }
+body.dark-mode .btn-download { background-color: var(--bg-dark); border-color: var(--border-dark); color: var(--text-dark); }
+body.dark-mode .btn-download:hover { background-color: var(--container-dark); }
+body.dark-mode .btn-download .cost { color: #9ca3af; }
+body.dark-mode .pricing-card { border-color: var(--border-dark); }
+body.dark-mode .alert-danger { background-color: #3f2224; color: #fca5a5; border-color: #7f1d1d; }
+body.dark-mode .alert-success { background-color: #163825; color: #86efac; border-color: #166534; }
+
+/* 10. Theme Switch */
+.theme-switch-wrapper { display: flex; align-items: center; margin: 0 1rem; }
+.theme-switch { display: inline-block; height: 24px; position: relative; width: 50px; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider { background-color: #ccc; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; }
+.slider:before { background-color: #fff; bottom: 4px; content: ""; height: 16px; left: 4px; position: absolute; transition: .4s; width: 16px; }
+input:checked + .slider { background: var(--primary-color); }
+input:checked + .slider:before { transform: translateX(26px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+body.dark-mode .slider { background-color: var(--secondary-color); }
+/* Social Login Buttons */
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    color: #aaa;
+    font-weight: bold;
+}
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: var(--border-radius );
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid var(--border-light);
+    transition: background-color 0.2s;
+}
+.btn-social img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.btn-social.google {
+    background-color: #fff;
+    color: #333;
+}
+.btn-social.google:hover {
+    background-color: #f8f8f8;
+}
+body.dark-mode .btn-social.google {
+    background-color: var(--container-dark);
+    color: var(--text-dark);
+    border-color: var(--border-dark);
+}
+body.dark-mode .btn-social.google:hover {
+    background-color: #374151;
+}

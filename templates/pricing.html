@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Credits</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <!-- ... (نفس شريط التنقل الموجود في remove_bg.html) ... -->
+    </nav>
+    <div class="container">
+        <h1>Pricing Plans</h1>
+        <p>Choose a package that suits your needs.</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <p class="price">$5</p>
+                <p class="credits-amount">20 Credits</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="pricing-card popular">
+                <h3>Pro</h3>
+                <p class="price">$10</p>
+                <p class="credits-amount">50 Credits</p>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Business</h3>
+                <p class="price">$20</p>
+                <p class="credits-amount">120 Credits</p>
+                <button class="btn">Buy Now</button>
+            </div>
+        </div>
+        <p style="margin-top: 20px;">(This is a demo page. Payment processing is not implemented.)</p>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

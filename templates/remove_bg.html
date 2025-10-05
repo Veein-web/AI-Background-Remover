@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Background</title>
+    <!-- [تصحيح مهم] استخدام url_for لضمان صحة المسار دائمًا -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a class="nav-brand" href="{{ url_for('remove_bg') }}">AI Remover</a>
+            <div class="nav-links">
+                <span class="nav-user">Welcome, {{ current_user.name }}!</span>
+                <span class="nav-credits">Credits: {{ current_user.credits }}</span>
+                <a href="{{ url_for('pricing') }}" class="btn btn-secondary">Pricing</a>
+                <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="tool-header">
+            <h2>Upload Your Image</h2>
+            <p>Select an image file from your computer to remove its background.</p>
+        </div>
+
+        <!-- رسائل Flash للمستخدم -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit" class="btn btn-large">Remove Background</button>
+        </form>
+
+        <!-- قسم عرض النتائج (يظهر فقط بعد المعالجة) -->
+        {% if processed_image %}
+        <hr>
+        <h2>Result</h2>
+        <div class="results">
+            <div class="image-box">
+                <h3>Original</h3>
+                <img src="{{ url_for('static', filename='uploads/' + original_image) }}" alt="Original Image">
+            </div>
+            <div class="image-box">
+                <h3>Background Removed (Preview)</h3>
+                <img src="{{ url_for('static', filename='processed/' + processed_image) }}" alt="Processed Image">
+                
+                <!-- قسم خيارات التحميل -->
+                <div class="download-options">
+                    <h4>Download Options</h4>
+                    <p>Your Credits: <span class="credit-count">{{ current_user.credits }}</span></p>
+                    <ul>
+                        {% for key, quality in qualities.items() %}
+                        <li>
+                            <a href="{{ url_for('download_image', filename=processed_image, quality=key) }}" 
+                               class="btn-download {% if current_user.credits < quality.cost %}disabled{% endif %}">
+                                {{ quality.name }}
+                                <span class="cost">
+                                    {% if quality.cost == 0 %}
+                                        (Free)
+                                    {% else %}
+                                        ({{ quality.cost }} Credit{{ 's' if quality.cost > 1 }})
+                                    {% endif %}
+                                </span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% if current_user.credits < 3 %}
+                        <a href="{{ url_for('pricing') }}" class="buy-credits-link">Buy More Credits</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- ملف JavaScript الخاص بالوضع المظلم -->
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+</body>
+</html>

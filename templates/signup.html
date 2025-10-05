@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Create a New Account</h1>
+        <form method="POST" action="/signup">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <p class="auth-switch">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+    </div>
+</body>
+</html>
+<!-- في ملف login.html و signup.html، أضف هذا القسم بعد وسم <form> -->
+<!-- في ملف login.html و signup.html، قم بتحديث رابط Google -->
+<div class="social-login">
+    <a href="{{ url_for('google.login') }}" class="btn-social google"> <!-- <-- [تحديث مهم] -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google logo">
+        Sign in with Google
+    </a>
+</div>
+<div class="divider">OR</div>
